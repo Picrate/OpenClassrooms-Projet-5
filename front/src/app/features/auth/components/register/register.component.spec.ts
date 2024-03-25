@@ -9,18 +9,36 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { expect } from '@jest/globals';
 
 import { RegisterComponent } from './register.component';
+import {AuthService} from "../../services/auth.service";
+import {of} from "rxjs";
+import {By} from "@angular/platform-browser";
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
 
+  let authServiceMock!: {register: jest.Mock};
+
+  const formData = {
+    firstName : "firstName",
+    lastName : "lastName",
+    email : "user@email.com",
+    password : "password"
+  };
+
   beforeEach(async () => {
+    authServiceMock = {
+      register : jest.fn(),
+    };
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent],
+      providers: [
+        {provide: AuthService, useValue: authServiceMock}
+      ],
       imports: [
         BrowserAnimationsModule,
         HttpClientModule,
-        ReactiveFormsModule,  
+        ReactiveFormsModule,
         MatCardModule,
         MatFormFieldModule,
         MatIconModule,
@@ -28,6 +46,8 @@ describe('RegisterComponent', () => {
       ]
     })
       .compileComponents();
+
+    authServiceMock.register.mockReturnValue(of());
 
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
@@ -37,4 +57,27 @@ describe('RegisterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  test('submits the form successfully', () => {
+    const {debugElement} = fixture;
+    const form = debugElement.query(By.css('form'));
+    let firstnameInput = debugElement.query(By.css('[formControlName="firstName"]'));
+    let lastnameInput = debugElement.query(By.css('[formControlName="lastName"]'));
+    let emailInput = debugElement.query(By.css('[formControlName="email"]'));
+    let passwordInput = debugElement.query(By.css('[formControlName="password"]'));
+    firstnameInput.nativeElement.value = formData.firstName;
+    lastnameInput.nativeElement.value = formData.lastName;
+    emailInput.nativeElement.value = formData.email;
+    passwordInput.nativeElement.value =formData.password;
+    firstnameInput.nativeElement.dispatchEvent(new Event('input'));
+    lastnameInput.nativeElement.dispatchEvent(new Event('input'));
+    emailInput.nativeElement.dispatchEvent(new Event('input'));
+    passwordInput.nativeElement.dispatchEvent(new Event('input'));
+    form.triggerEventHandler('submit', {});
+    fixture.detectChanges();
+    expect(authServiceMock.register).toHaveBeenCalledWith(formData);
+    // gérer la route retour URL
+
+  })
+
 });

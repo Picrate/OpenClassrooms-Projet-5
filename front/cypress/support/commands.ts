@@ -41,3 +41,45 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add('login', () => {
+    cy.request({
+      method: 'POST',
+      url: 'http://localhost:8080/api/auth/login',
+      body: {
+        email: "yoga@studio.com",
+        password: "test!1234"
+      }
+    }).then((response) => {
+      window.localStorage.setItem('Bearer', response.body.token);
+    });
+});
+
+Cypress.Commands.add('loginUI', (email: string, password: string) => {
+  cy.visit('/login')
+  cy.get('input[formControlName=email]').type(email)
+  cy.get('input[formControlName=password]').type(`${password}{enter}{enter}`)
+});
+
+Cypress.Commands.add('register', (email: string, password: string) => {
+  cy.visit('/register')
+  cy.get('input[formControlName=firstName]').clear().type("register")
+  cy.get('input[formControlName=lastName]').clear().type("user")
+  cy.get('input[formControlName=email]').clear().type(email)
+  cy.get('input[formControlName=password]').clear().type(password)
+  cy.get('button[type=submit]').click()
+  // check registring
+  cy.url().should('include', '/login')
+});
+
+Cypress.Commands.add('createUser', (email: string, password: string) => {
+  cy.request({
+    method: 'POST',
+    url: 'http://localhost:8080/api/auth/register',
+    body: {
+      firstname: 'firstName',
+      lastname: 'lastName',
+      email: email,
+      password: password
+    }
+  });
+})
