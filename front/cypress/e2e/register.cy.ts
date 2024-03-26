@@ -1,6 +1,6 @@
 describe('Register spec', () => {
   it('Register successfull', () => {
-    cy.intercept('POST', '/api/auth/register', {fixture: 'simpleuser.json'});
+    cy.intercept('POST', '/api/auth/register', {fixture: 'simple_user.json'});
     cy.visit('/register')
     cy.get('input[formControlName=firstName]').clear().type("register")
     cy.get('input[formControlName=lastName]').clear().type("user")

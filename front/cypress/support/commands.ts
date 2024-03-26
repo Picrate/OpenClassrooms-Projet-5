@@ -47,7 +47,7 @@ Cypress.Commands.add('login', (asAdmin: boolean) => {
     if(asAdmin) {
     cy.intercept('POST', '/api/auth/login', {fixture: 'adminuser.json'});
   } else {
-    cy.intercept('POST', '/api/auth/login', {fixture: 'simpleuser.json'});
+    cy.intercept('POST', '/api/auth/login', {fixture: 'simple_user.json'});
   }
   cy.visit('/login')
   cy.intercept('GET','/api/session',{fixture: 'sessions.json'});

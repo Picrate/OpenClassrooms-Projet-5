@@ -18,7 +18,7 @@ describe('Account Information spec', () => {
 
   it('should show user informations and delete user account', () => {
     cy.login(false);
-    cy.intercept('GET', 'api/user/**',{fixture:'simpleuser.json'});
+    cy.intercept('GET', 'api/user/**',{fixture:'simple_user.json'});
     cy.intercept('DELETE', 'api/user/**',{
       statusCode: 200,
       body: {message: 'User information was deleted successfully'}
