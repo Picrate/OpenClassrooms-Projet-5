@@ -388,7 +388,7 @@
       "0": 9,
       "1": 9,
       "2": 9,
-      "3": 692,
+      "3": 715,
       "4": 9,
       "5": 9,
       "6": 9,
@@ -404,7 +404,7 @@
     "f": {
       "0": 9,
       "1": 9,
-      "2": 692,
+      "2": 715,
       "3": 9,
       "4": 0,
       "5": 9,
@@ -477,7 +477,7 @@
         },
         "end": {
           "line": 7,
-          "column": 58
+          "column": 36
         }
       },
       "3": {
@@ -727,7 +727,7 @@
     },
     "inputSourceMap": {
       "version": 3,
-      "mappings": ";;AAQA,WAAaA,WAAb;EAAM,MAAOA,WAAP,CAAkB;IAItBC,YAAoBC,UAApB,EAA0C;MAAtB;MAFZ,mBAAc,gCAAd;IAEuC;;IAExCC,OAAO,CAACC,EAAD,EAAW;MACvB,OAAO,KAAKF,UAAL,CAAgBG,GAAhB,CAA0B,GAAG,KAAKC,WAAW,IAAIF,EAAE,EAAnD,CAAP;IACD;;IAEMG,MAAM,CAACH,EAAD,EAAW;MACtB,OAAO,KAAKF,UAAL,CAAgBK,MAAhB,CAAuB,GAAG,KAAKD,WAAW,IAAIF,EAAE,EAAhD,CAAP;IACD;;EAZqB;;;qBAAXJ,aAAWQ;EAAA;;;WAAXR;IAAWS,SAAXT,WAAW;IAAAU,YAFV;;EAEd,OAAaV,WAAb;AAAA",
+      "mappings": ";;AAQA,WAAaA,WAAb;EAAM,MAAOA,WAAP,CAAkB;IAItBC,YAAoBC,UAApB,EAA0C;MAAtB;MAFZ,mBAAc,UAAd;IAEuC;;IAExCC,OAAO,CAACC,EAAD,EAAW;MACvB,OAAO,KAAKF,UAAL,CAAgBG,GAAhB,CAA0B,GAAG,KAAKC,WAAW,IAAIF,EAAE,EAAnD,CAAP;IACD;;IAEMG,MAAM,CAACH,EAAD,EAAW;MACtB,OAAO,KAAKF,UAAL,CAAgBK,MAAhB,CAAuB,GAAG,KAAKD,WAAW,IAAIF,EAAE,EAAhD,CAAP;IACD;;EAZqB;;;qBAAXJ,aAAWQ;EAAA;;;WAAXR;IAAWS,SAAXT,WAAW;IAAAU,YAFV;;EAEd,OAAaV,WAAb;AAAA",
       "names": [
         "UserService",
         "constructor",
@@ -746,11 +746,11 @@
         "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/services/user.service.ts"
       ],
       "sourcesContent": [
-        "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { User } from '../interfaces/user.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UserService {\n\n  private pathService = 'http://localhost:8080/api/user';\n\n  constructor(private httpClient: HttpClient) { }\n\n  public getById(id: string): Observable<User> {\n    return this.httpClient.get<User>(`${this.pathService}/${id}`);\n  }\n\n  public delete(id: string): Observable<any> {\n    return this.httpClient.delete(`${this.pathService}/${id}`);\n  }\n}\n"
+        "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { User } from '../interfaces/user.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class UserService {\n\n  private pathService = 'api/user';\n\n  constructor(private httpClient: HttpClient) { }\n\n  public getById(id: string): Observable<User> {\n    return this.httpClient.get<User>(`${this.pathService}/${id}`);\n  }\n\n  public delete(id: string): Observable<any> {\n    return this.httpClient.delete(`${this.pathService}/${id}`);\n  }\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "ba648a10e85df1e0b9d939671f8db6e15f3ddc92"
+    "hash": "ce20ccfb1cc8df12bad60a4284c7f648e827cd78"
   },
   "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/components/me/me.component.ts": {
     "path": "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/components/me/me.component.ts",
@@ -3776,7 +3776,7 @@
         },
         "end": {
           "line": 7,
-          "column": 58
+          "column": 36
         }
       },
       "3": {
@@ -4026,7 +4026,7 @@
     },
     "inputSourceMap": {
       "version": 3,
-      "mappings": ";;AAUA,WAAaA,WAAb;EAAM,MAAOA,WAAP,CAAkB;IAItBC,YAAoBC,UAApB,EAA0C;MAAtB;MAFZ,mBAAc,gCAAd;IAEuC;;IAExCC,QAAQ,CAACC,eAAD,EAAiC;MAC9C,OAAO,KAAKF,UAAL,CAAgBG,IAAhB,CAA2B,GAAG,KAAKC,WAAW,WAA9C,EAA2DF,eAA3D,CAAP;IACD;;IAEMG,KAAK,CAACC,YAAD,EAA2B;MACrC,OAAO,KAAKN,UAAL,CAAgBG,IAAhB,CAAyC,GAAG,KAAKC,WAAW,QAA5D,EAAsEE,YAAtE,CAAP;IACD;;EAZqB;;;qBAAXR,aAAWS;EAAA;;;WAAXT;IAAWU,SAAXV,WAAW;IAAAW,YAFV;;EAEd,OAAaX,WAAb;AAAA",
+      "mappings": ";;AAUA,WAAaA,WAAb;EAAM,MAAOA,WAAP,CAAkB;IAItBC,YAAoBC,UAApB,EAA0C;MAAtB;MAFZ,mBAAc,UAAd;IAEuC;;IAExCC,QAAQ,CAACC,eAAD,EAAiC;MAC9C,OAAO,KAAKF,UAAL,CAAgBG,IAAhB,CAA2B,GAAG,KAAKC,WAAW,WAA9C,EAA2DF,eAA3D,CAAP;IACD;;IAEMG,KAAK,CAACC,YAAD,EAA2B;MACrC,OAAO,KAAKN,UAAL,CAAgBG,IAAhB,CAAyC,GAAG,KAAKC,WAAW,QAA5D,EAAsEE,YAAtE,CAAP;IACD;;EAZqB;;;qBAAXR,aAAWS;EAAA;;;WAAXT;IAAWU,SAAXV,WAAW;IAAAW,YAFV;;EAEd,OAAaX,WAAb;AAAA",
       "names": [
         "AuthService",
         "constructor",
@@ -4046,11 +4046,11 @@
         "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/features/auth/services/auth.service.ts"
       ],
       "sourcesContent": [
-        "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { LoginRequest } from '../interfaces/loginRequest.interface';\nimport { RegisterRequest } from '../interfaces/registerRequest.interface';\nimport { SessionInformation } from 'src/app/interfaces/sessionInformation.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class AuthService {\n\n  private pathService = 'http://localhost:8080/api/auth';\n\n  constructor(private httpClient: HttpClient) { }\n\n  public register(registerRequest: RegisterRequest): Observable<void> {\n    return this.httpClient.post<void>(`${this.pathService}/register`, registerRequest);\n  }\n\n  public login(loginRequest: LoginRequest): Observable<SessionInformation> {\n    return this.httpClient.post<SessionInformation>(`${this.pathService}/login`, loginRequest);\n  }\n}\n"
+        "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { LoginRequest } from '../interfaces/loginRequest.interface';\nimport { RegisterRequest } from '../interfaces/registerRequest.interface';\nimport { SessionInformation } from 'src/app/interfaces/sessionInformation.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class AuthService {\n\n  private pathService = 'api/auth';\n\n  constructor(private httpClient: HttpClient) { }\n\n  public register(registerRequest: RegisterRequest): Observable<void> {\n    return this.httpClient.post<void>(`${this.pathService}/register`, registerRequest);\n  }\n\n  public login(loginRequest: LoginRequest): Observable<SessionInformation> {\n    return this.httpClient.post<SessionInformation>(`${this.pathService}/login`, loginRequest);\n  }\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "3759867eb34d6f49457ea46d6c0b3c078a9f05bc"
+    "hash": "ce80599d15fa09332c538d6789bd9214a8549803"
   },
   "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/app.component.ts": {
     "path": "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/app.component.ts",
@@ -4937,7 +4937,7 @@
       }
     },
     "s": {
-      "0": 305,
+      "0": 328,
       "1": 9,
       "2": 9,
       "3": 9,
@@ -4963,13 +4963,13 @@
       "23": 9,
       "24": 9,
       "25": 9,
-      "26": 692,
+      "26": 715,
       "27": 0,
       "28": 0,
       "29": 9,
       "30": 9,
       "31": 9,
-      "32": 701,
+      "32": 724,
       "33": 9,
       "34": 9,
       "35": 9,
@@ -4980,27 +4980,27 @@
       "40": 9,
       "41": 9,
       "42": 9,
-      "43": 701,
-      "44": 692,
-      "45": 692,
-      "46": 692,
+      "43": 724,
+      "44": 715,
+      "45": 715,
+      "46": 715,
       "47": 9
     },
     "f": {
-      "0": 305,
+      "0": 328,
       "1": 0,
       "2": 405,
       "3": 9,
       "4": 9,
-      "5": 692,
+      "5": 715,
       "6": 0,
       "7": 9,
-      "8": 701
+      "8": 724
     },
     "b": {
       "0": [
         9,
-        296
+        319
       ],
       "1": [
         9,
@@ -5012,10 +5012,10 @@
       ],
       "3": [
         9,
-        692
+        715
       ],
       "4": [
-        692,
+        715,
         9
       ]
     },
@@ -5322,9 +5322,9 @@
     "s": {
       "0": 9,
       "1": 9,
-      "2": 39,
-      "3": 30,
-      "4": 39,
+      "2": 38,
+      "3": 29,
+      "4": 38,
       "5": 9,
       "6": 9,
       "7": 9,
@@ -5333,12 +5333,12 @@
     "f": {
       "0": 9,
       "1": 9,
-      "2": 39,
+      "2": 38,
       "3": 9
     },
     "b": {
       "0": [
-        30,
+        29,
         9
       ],
       "1": [
@@ -5563,7 +5563,7 @@
     },
     "inputSourceMap": {
       "version": 3,
-      "mappings": "AACA,SAASA,iBAAT,QAAkC,6BAAlC;AACA,SAASC,aAAT,QAA8B,2BAA9B;AAEA,SAASC,gBAAT,QAAiC,sBAAjC;AACA,SAASC,YAAT,QAA6B,iBAA7B;AACA,SAASC,uBAAT,QAAwC,sCAAxC;AAEA,SAASC,eAAT,QAAgC,0BAAhC;AACA,SAASC,aAAT,QAA8B,wBAA9B;AACA,SAASC,gBAAT,QAAiC,2BAAjC;AACA,SAASC,gBAAT,EAA2BC,iBAA3B,QAAoD,sBAApD;AACA,SAASC,cAAT,QAA+B,gCAA/B;AACA,SAASC,aAAT,QAA8B,wBAA9B;AACA,SAASC,gBAAT,QAAiC,sBAAjC;;AAGA,MAAMC,cAAc,GAAG,CACrBR,eADqB,EAErBM,aAFqB,EAGrBL,aAHqB,EAIrBN,iBAJqB,EAKrBO,gBALqB,CAAvB;AA2BA,WAAaO,SAAb;EAAM,MAAOA,SAAP,CAAgB;;;qBAATA;EAAS;;;UAATA;IAASC,YAFRZ,YAEQ;;;eALT,CACT;MAAEa,OAAO,EAAEP,iBAAX;MAA8BQ,QAAQ,EAAEP,cAAxC;MAAwDQ,KAAK,EAAE;IAA/D,CADS;IAEVC,UATClB,aASD,EARCC,gBAQD,EAPCE,uBAOD,EANCQ,gBAMD,EALCJ,gBAKD,EAJIK,cAIJ;;EAGH,OAAaC,SAAb;AAAA",
+      "mappings": "AACA,SAASA,iBAAT,QAAkC,6BAAlC;AACA,SAASC,aAAT,QAA8B,2BAA9B;AAGA,SAASC,gBAAT,QAAiC,sBAAjC;AACA,SAASC,YAAT,QAA6B,iBAA7B;AACA,SAASC,uBAAT,QAAwC,sCAAxC;AAEA,SAASC,eAAT,QAAgC,0BAAhC;AACA,SAASC,aAAT,QAA8B,wBAA9B;AACA,SAASC,gBAAT,QAAiC,2BAAjC;AACA,SAASC,gBAAT,EAA2BC,iBAA3B,QAAoD,sBAApD;AACA,SAASC,cAAT,QAA+B,gCAA/B;AACA,SAASC,aAAT,QAA8B,wBAA9B;AACA,SAASC,gBAAT,QAAiC,sBAAjC;;AAGA,MAAMC,cAAc,GAAG,CACrBR,eADqB,EAErBM,aAFqB,EAGrBL,aAHqB,EAIrBN,iBAJqB,EAKrBO,gBALqB,CAAvB;AA4BA,WAAaO,SAAb;EAAM,MAAOA,SAAP,CAAgB;;;qBAATA;EAAS;;;UAATA;IAASC,YAHRZ,YAGQ;;;eANT,CACT;MAAEa,OAAO,EAAEP,iBAAX;MAA8BQ,QAAQ,EAAEP,cAAxC;MAAwDQ,KAAK,EAAE;IAA/D,CADS;IAEVC,UATClB,aASD,EARCC,gBAQD,EAPCE,uBAOD,EANCQ,gBAMD,EALCJ,gBAKD,EAJIK,cAIJ;;EAIH,OAAaC,SAAb;AAAA",
       "names": [
         "MatSnackBarModule",
         "BrowserModule",
@@ -5591,11 +5591,11 @@
         "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/app.module.ts"
       ],
       "sourcesContent": [
-        "import { NgModule } from '@angular/core';\nimport { MatSnackBarModule } from '@angular/material/snack-bar';\nimport { BrowserModule } from '@angular/platform-browser';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { NotFoundComponent } from './components/not-found/not-found.component';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatToolbarModule } from '@angular/material/toolbar';\nimport { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';\nimport { JwtInterceptor } from './interceptors/jwt.interceptor';\nimport { MatCardModule } from '@angular/material/card';\nimport { FlexLayoutModule } from '@angular/flex-layout';\nimport { MeComponent } from './components/me/me.component';\n\nconst materialModule = [\n  MatButtonModule,\n  MatCardModule,\n  MatIconModule,\n  MatSnackBarModule,\n  MatToolbarModule,\n]\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    NotFoundComponent,\n    MeComponent,\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    BrowserAnimationsModule, \n    FlexLayoutModule,\n    HttpClientModule,\n    ...materialModule\n  ],\n  providers: [\n    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },\n  ],\n  bootstrap: [AppComponent]\n})\nexport class AppModule { }\n"
+        "import { NgModule } from '@angular/core';\nimport { MatSnackBarModule } from '@angular/material/snack-bar';\nimport { BrowserModule } from '@angular/platform-browser';\nimport { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';\n\nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\nimport { NotFoundComponent } from './components/not-found/not-found.component';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatIconModule } from '@angular/material/icon';\nimport { MatToolbarModule } from '@angular/material/toolbar';\nimport { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';\nimport { JwtInterceptor } from './interceptors/jwt.interceptor';\nimport { MatCardModule } from '@angular/material/card';\nimport { FlexLayoutModule } from '@angular/flex-layout';\nimport { MeComponent } from './components/me/me.component';\n\nconst materialModule = [\n  MatButtonModule,\n  MatCardModule,\n  MatIconModule,\n  MatSnackBarModule,\n  MatToolbarModule,\n]\n\n@NgModule({\n  declarations: [\n    AppComponent,\n    NotFoundComponent,\n    MeComponent,\n  ],\n  imports: [\n    BrowserModule,\n    AppRoutingModule,\n    BrowserAnimationsModule,\n    FlexLayoutModule,\n    HttpClientModule,\n    ...materialModule\n  ],\n  providers: [\n    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },\n  ],\n  bootstrap: [AppComponent],\n  schemas: [CUSTOM_ELEMENTS_SCHEMA,]\n})\nexport class AppModule { }\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "83522a16539201eacc6a29e14a2d99ea315c7aee"
+    "hash": "ddbd63e8b9437d8c477cbf344b921a1041e66fb7"
   },
   "/home/patrice/Devs/Testez-une-application-full-stack/front/src/environments/environment.ts": {
     "path": "/home/patrice/Devs/Testez-une-application-full-stack/front/src/environments/environment.ts",
@@ -8399,7 +8399,7 @@
         },
         "end": {
           "line": 7,
-          "column": 61
+          "column": 39
         }
       },
       "3": {
@@ -8797,7 +8797,7 @@
       "0": 9,
       "1": 9,
       "2": 9,
-      "3": 13,
+      "3": 12,
       "4": 5,
       "5": 2,
       "6": 2,
@@ -8812,7 +8812,7 @@
     "f": {
       "0": 9,
       "1": 9,
-      "2": 13,
+      "2": 12,
       "3": 5,
       "4": 2,
       "5": 2,
@@ -8829,7 +8829,7 @@
     },
     "inputSourceMap": {
       "version": 3,
-      "mappings": ";;AAQA,WAAaA,iBAAb;EAAM,MAAOA,iBAAP,CAAwB;IAI5BC,YAAoBC,UAApB,EAA0C;MAAtB;MAFZ,mBAAc,mCAAd;IAGP;;IAEMC,GAAG;MACR,OAAO,KAAKD,UAAL,CAAgBE,GAAhB,CAA+B,KAAKC,WAApC,CAAP;IACD;;IAEMC,MAAM,CAACC,EAAD,EAAW;MACtB,OAAO,KAAKL,UAAL,CAAgBE,GAAhB,CAA6B,GAAG,KAAKC,WAAW,IAAIE,EAAE,EAAtD,CAAP;IACD;;IAEMC,MAAM,CAACD,EAAD,EAAW;MACtB,OAAO,KAAKL,UAAL,CAAgBM,MAAhB,CAAuB,GAAG,KAAKH,WAAW,IAAIE,EAAE,EAAhD,CAAP;IACD;;IAEME,MAAM,CAACC,OAAD,EAAiB;MAC5B,OAAO,KAAKR,UAAL,CAAgBS,IAAhB,CAA8B,KAAKN,WAAnC,EAAgDK,OAAhD,CAAP;IACD;;IAEME,MAAM,CAACL,EAAD,EAAaG,OAAb,EAA6B;MACxC,OAAO,KAAKR,UAAL,CAAgBW,GAAhB,CAA6B,GAAG,KAAKR,WAAW,IAAIE,EAAE,EAAtD,EAA0DG,OAA1D,CAAP;IACD;;IAEMI,WAAW,CAACP,EAAD,EAAaQ,MAAb,EAA2B;MAC3C,OAAO,KAAKb,UAAL,CAAgBS,IAAhB,CAA2B,GAAG,KAAKN,WAAW,IAAIE,EAAE,gBAAgBQ,MAAM,EAA1E,EAA8E,IAA9E,CAAP;IACD;;IAEMC,aAAa,CAACT,EAAD,EAAaQ,MAAb,EAA2B;MAC7C,OAAO,KAAKb,UAAL,CAAgBM,MAAhB,CAA6B,GAAG,KAAKH,WAAW,IAAIE,EAAE,gBAAgBQ,MAAM,EAA5E,CAAP;IACD;;EAjC2B;;;qBAAjBf,mBAAiBiB;EAAA;;;WAAjBjB;IAAiBkB,SAAjBlB,iBAAiB;IAAAmB,YAFhB;;EAEd,OAAanB,iBAAb;AAAA",
+      "mappings": ";;AAQA,WAAaA,iBAAb;EAAM,MAAOA,iBAAP,CAAwB;IAI5BC,YAAoBC,UAApB,EAA0C;MAAtB;MAFZ,mBAAc,aAAd;IAGP;;IAEMC,GAAG;MACR,OAAO,KAAKD,UAAL,CAAgBE,GAAhB,CAA+B,KAAKC,WAApC,CAAP;IACD;;IAEMC,MAAM,CAACC,EAAD,EAAW;MACtB,OAAO,KAAKL,UAAL,CAAgBE,GAAhB,CAA6B,GAAG,KAAKC,WAAW,IAAIE,EAAE,EAAtD,CAAP;IACD;;IAEMC,MAAM,CAACD,EAAD,EAAW;MACtB,OAAO,KAAKL,UAAL,CAAgBM,MAAhB,CAAuB,GAAG,KAAKH,WAAW,IAAIE,EAAE,EAAhD,CAAP;IACD;;IAEME,MAAM,CAACC,OAAD,EAAiB;MAC5B,OAAO,KAAKR,UAAL,CAAgBS,IAAhB,CAA8B,KAAKN,WAAnC,EAAgDK,OAAhD,CAAP;IACD;;IAEME,MAAM,CAACL,EAAD,EAAaG,OAAb,EAA6B;MACxC,OAAO,KAAKR,UAAL,CAAgBW,GAAhB,CAA6B,GAAG,KAAKR,WAAW,IAAIE,EAAE,EAAtD,EAA0DG,OAA1D,CAAP;IACD;;IAEMI,WAAW,CAACP,EAAD,EAAaQ,MAAb,EAA2B;MAC3C,OAAO,KAAKb,UAAL,CAAgBS,IAAhB,CAA2B,GAAG,KAAKN,WAAW,IAAIE,EAAE,gBAAgBQ,MAAM,EAA1E,EAA8E,IAA9E,CAAP;IACD;;IAEMC,aAAa,CAACT,EAAD,EAAaQ,MAAb,EAA2B;MAC7C,OAAO,KAAKb,UAAL,CAAgBM,MAAhB,CAA6B,GAAG,KAAKH,WAAW,IAAIE,EAAE,gBAAgBQ,MAAM,EAA5E,CAAP;IACD;;EAjC2B;;;qBAAjBf,mBAAiBiB;EAAA;;;WAAjBjB;IAAiBkB,SAAjBlB,iBAAiB;IAAAmB,YAFhB;;EAEd,OAAanB,iBAAb;AAAA",
       "names": [
         "SessionApiService",
         "constructor",
@@ -8857,11 +8857,11 @@
         "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/features/sessions/services/session-api.service.ts"
       ],
       "sourcesContent": [
-        "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { Session } from '../interfaces/session.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class SessionApiService {\n\n  private pathService = 'http://localhost:8080/api/session';\n\n  constructor(private httpClient: HttpClient) {\n  }\n\n  public all(): Observable<Session[]> {\n    return this.httpClient.get<Session[]>(this.pathService);\n  }\n\n  public detail(id: string): Observable<Session> {\n    return this.httpClient.get<Session>(`${this.pathService}/${id}`);\n  }\n\n  public delete(id: string): Observable<any> {\n    return this.httpClient.delete(`${this.pathService}/${id}`);\n  }\n\n  public create(session: Session): Observable<Session> {\n    return this.httpClient.post<Session>(this.pathService, session);\n  }\n\n  public update(id: string, session: Session): Observable<Session> {\n    return this.httpClient.put<Session>(`${this.pathService}/${id}`, session);\n  }\n\n  public participate(id: string, userId: string): Observable<void> {\n    return this.httpClient.post<void>(`${this.pathService}/${id}/participate/${userId}`, null);\n  }\n\n  public unParticipate(id: string, userId: string): Observable<void> {\n    return this.httpClient.delete<void>(`${this.pathService}/${id}/participate/${userId}`);\n  }\n\n}\n"
+        "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { Session } from '../interfaces/session.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class SessionApiService {\n\n  private pathService = 'api/session';\n\n  constructor(private httpClient: HttpClient) {\n  }\n\n  public all(): Observable<Session[]> {\n    return this.httpClient.get<Session[]>(this.pathService);\n  }\n\n  public detail(id: string): Observable<Session> {\n    return this.httpClient.get<Session>(`${this.pathService}/${id}`);\n  }\n\n  public delete(id: string): Observable<any> {\n    return this.httpClient.delete(`${this.pathService}/${id}`);\n  }\n\n  public create(session: Session): Observable<Session> {\n    return this.httpClient.post<Session>(this.pathService, session);\n  }\n\n  public update(id: string, session: Session): Observable<Session> {\n    return this.httpClient.put<Session>(`${this.pathService}/${id}`, session);\n  }\n\n  public participate(id: string, userId: string): Observable<void> {\n    return this.httpClient.post<void>(`${this.pathService}/${id}/participate/${userId}`, null);\n  }\n\n  public unParticipate(id: string, userId: string): Observable<void> {\n    return this.httpClient.delete<void>(`${this.pathService}/${id}/participate/${userId}`);\n  }\n\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "8dc780b80038f38e1abcf45e9c03d2294c56eadc"
+    "hash": "7e8cf5ff649eeebf952cfa063a4d486173f89c09"
   },
   "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/services/teacher.service.ts": {
     "path": "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/services/teacher.service.ts",
@@ -8893,7 +8893,7 @@
         },
         "end": {
           "line": 7,
-          "column": 61
+          "column": 39
         }
       },
       "3": {
@@ -9143,7 +9143,7 @@
     },
     "inputSourceMap": {
       "version": 3,
-      "mappings": ";;AAQA,WAAaA,cAAb;EAAM,MAAOA,cAAP,CAAqB;IAIzBC,YAAoBC,UAApB,EAA0C;MAAtB;MAFZ,mBAAc,mCAAd;IAEuC;;IAExCC,GAAG;MACR,OAAO,KAAKD,UAAL,CAAgBE,GAAhB,CAA+B,KAAKC,WAApC,CAAP;IACD;;IAEMC,MAAM,CAACC,EAAD,EAAW;MACtB,OAAO,KAAKL,UAAL,CAAgBE,GAAhB,CAA6B,GAAG,KAAKC,WAAW,IAAIE,EAAE,EAAtD,CAAP;IACD;;EAZwB;;;qBAAdP,gBAAcQ;EAAA;;;WAAdR;IAAcS,SAAdT,cAAc;IAAAU,YAFb;;EAEd,OAAaV,cAAb;AAAA",
+      "mappings": ";;AAQA,WAAaA,cAAb;EAAM,MAAOA,cAAP,CAAqB;IAIzBC,YAAoBC,UAApB,EAA0C;MAAtB;MAFZ,mBAAc,aAAd;IAEuC;;IAExCC,GAAG;MACR,OAAO,KAAKD,UAAL,CAAgBE,GAAhB,CAA+B,KAAKC,WAApC,CAAP;IACD;;IAEMC,MAAM,CAACC,EAAD,EAAW;MACtB,OAAO,KAAKL,UAAL,CAAgBE,GAAhB,CAA6B,GAAG,KAAKC,WAAW,IAAIE,EAAE,EAAtD,CAAP;IACD;;EAZwB;;;qBAAdP,gBAAcQ;EAAA;;;WAAdR;IAAcS,SAAdT,cAAc;IAAAU,YAFb;;EAEd,OAAaV,cAAb;AAAA",
       "names": [
         "TeacherService",
         "constructor",
@@ -9162,11 +9162,11 @@
         "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/services/teacher.service.ts"
       ],
       "sourcesContent": [
-        "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { Teacher } from '../interfaces/teacher.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class TeacherService {\n\n  private pathService = 'http://localhost:8080/api/teacher';\n\n  constructor(private httpClient: HttpClient) { }\n\n  public all(): Observable<Teacher[]> {\n    return this.httpClient.get<Teacher[]>(this.pathService);\n  }\n\n  public detail(id: string): Observable<Teacher> {\n    return this.httpClient.get<Teacher>(`${this.pathService}/${id}`);\n  }\n}\n"
+        "import { HttpClient } from '@angular/common/http';\nimport { Injectable } from '@angular/core';\nimport { Observable } from 'rxjs';\nimport { Teacher } from '../interfaces/teacher.interface';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class TeacherService {\n\n  private pathService = 'api/teacher';\n\n  constructor(private httpClient: HttpClient) { }\n\n  public all(): Observable<Teacher[]> {\n    return this.httpClient.get<Teacher[]>(this.pathService);\n  }\n\n  public detail(id: string): Observable<Teacher> {\n    return this.httpClient.get<Teacher>(`${this.pathService}/${id}`);\n  }\n}\n"
       ]
     },
     "_coverageSchema": "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    "hash": "821a7f19dbfa1262009edc937fa5226e84f399d6"
+    "hash": "2b75bbc41fd7532df94e1048e28d0541e7400149"
   },
   "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/features/sessions/components/detail/detail.component.ts": {
     "path": "/home/patrice/Devs/Testez-une-application-full-stack/front/src/app/features/sessions/components/detail/detail.component.ts",
@@ -11973,7 +11973,7 @@
       }
     },
     "s": {
-      "0": 38,
+      "0": 43,
       "1": 4,
       "2": 4,
       "3": 4,
@@ -12023,19 +12023,19 @@
       "47": 0,
       "48": 0,
       "49": 0,
-      "50": 17,
-      "51": 3,
-      "52": 3,
-      "53": 3,
-      "54": 3,
-      "55": 3,
-      "56": 3,
-      "57": 3,
-      "58": 17,
-      "59": 14,
-      "60": 14,
-      "61": 14,
-      "62": 38,
+      "50": 0,
+      "51": 0,
+      "52": 0,
+      "53": 0,
+      "54": 0,
+      "55": 0,
+      "56": 0,
+      "57": 0,
+      "58": 0,
+      "59": 0,
+      "60": 0,
+      "61": 0,
+      "62": 43,
       "63": 4,
       "64": 4,
       "65": 4,
@@ -12088,26 +12088,26 @@
       "112": 4,
       "113": 4,
       "114": 4,
-      "115": 38,
-      "116": 34,
-      "117": 34,
-      "118": 34,
-      "119": 34,
-      "120": 34,
-      "121": 34,
-      "122": 34,
-      "123": 34,
-      "124": 34,
-      "125": 34,
-      "126": 34,
-      "127": 34,
-      "128": 34,
-      "129": 34,
-      "130": 34,
-      "131": 34,
-      "132": 34,
-      "133": 34,
-      "134": 34,
+      "115": 43,
+      "116": 39,
+      "117": 39,
+      "118": 39,
+      "119": 39,
+      "120": 39,
+      "121": 39,
+      "122": 39,
+      "123": 39,
+      "124": 39,
+      "125": 39,
+      "126": 39,
+      "127": 39,
+      "128": 39,
+      "129": 39,
+      "130": 39,
+      "131": 39,
+      "132": 39,
+      "133": 39,
+      "134": 39,
       "135": 9,
       "136": 4,
       "137": 4,
@@ -12135,29 +12135,29 @@
       "159": 4,
       "160": 0,
       "161": 4,
-      "162": 3,
+      "162": 0,
       "163": 9,
       "164": 4,
       "165": 9,
-      "166": 58,
+      "166": 63,
       "167": 4,
       "168": 4,
       "169": 4,
-      "170": 58,
-      "171": 54,
-      "172": 54,
+      "170": 63,
+      "171": 59,
+      "172": 59,
       "173": 9
     },
     "f": {
-      "0": 38,
+      "0": 43,
       "1": 2,
       "2": 0,
       "3": 0,
       "4": 0,
       "5": 0,
       "6": 0,
-      "7": 17,
-      "8": 38,
+      "7": 0,
+      "8": 43,
       "9": 0,
       "10": 9,
       "11": 4,
@@ -12172,14 +12172,14 @@
       "20": 4,
       "21": 4,
       "22": 0,
-      "23": 3,
+      "23": 0,
       "24": 4,
-      "25": 58
+      "25": 63
     },
     "b": {
       "0": [
         4,
-        34
+        39
       ],
       "1": [
         0,
@@ -12198,19 +12198,19 @@
         0
       ],
       "5": [
-        3,
-        14
+        0,
+        0
       ],
       "6": [
-        14,
-        3
+        0,
+        0
       ],
       "7": [
         4,
-        34
+        39
       ],
       "8": [
-        34,
+        39,
         4
       ],
       "9": [
@@ -12219,10 +12219,10 @@
       ],
       "10": [
         4,
-        54
+        59
       ],
       "11": [
-        54,
+        59,
         4
       ]
     },
@@ -14309,7 +14309,7 @@
       }
     },
     "s": {
-      "0": 124,
+      "0": 134,
       "1": 2,
       "2": 2,
       "3": 2,
@@ -14317,16 +14317,16 @@
       "5": 1,
       "6": 1,
       "7": 1,
-      "8": 240,
+      "8": 262,
       "9": 6,
       "10": 6,
       "11": 6,
-      "12": 240,
-      "13": 234,
-      "14": 234,
-      "15": 234,
-      "16": 234,
-      "17": 140,
+      "12": 262,
+      "13": 256,
+      "14": 256,
+      "15": 256,
+      "16": 256,
+      "17": 150,
       "18": 3,
       "19": 3,
       "20": 3,
@@ -14358,14 +14358,14 @@
       "46": 3,
       "47": 3,
       "48": 3,
-      "49": 140,
-      "50": 137,
-      "51": 137,
-      "52": 137,
-      "53": 137,
-      "54": 137,
-      "55": 137,
-      "56": 137,
+      "49": 150,
+      "50": 147,
+      "51": 147,
+      "52": 147,
+      "53": 147,
+      "54": 147,
+      "55": 147,
+      "56": 147,
       "57": 9,
       "58": 3,
       "59": 3,
@@ -14388,16 +14388,16 @@
       "76": 3,
       "77": 3,
       "78": 2,
-      "79": 1,
+      "79": 0,
       "80": 1,
       "81": 1,
       "82": 3,
-      "83": 2,
-      "84": 2,
+      "83": 1,
+      "84": 1,
       "85": 9,
       "86": 3,
       "87": 9,
-      "88": 145,
+      "88": 155,
       "89": 3,
       "90": 3,
       "91": 3,
@@ -14406,37 +14406,37 @@
       "94": 3,
       "95": 3,
       "96": 3,
-      "97": 145,
-      "98": 142,
-      "99": 142,
-      "100": 142,
-      "101": 142,
-      "102": 142,
-      "103": 142,
+      "97": 155,
+      "98": 152,
+      "99": 152,
+      "100": 152,
+      "101": 152,
+      "102": 152,
+      "103": 152,
       "104": 9
     },
     "f": {
-      "0": 124,
+      "0": 134,
       "1": 21,
-      "2": 240,
-      "3": 140,
+      "2": 262,
+      "3": 150,
       "4": 3,
       "5": 9,
       "6": 3,
       "7": 3,
       "8": 1,
       "9": 3,
-      "10": 1,
+      "10": 0,
       "11": 1,
       "12": 3,
-      "13": 2,
+      "13": 1,
       "14": 3,
-      "15": 145
+      "15": 155
     },
     "b": {
       "0": [
         2,
-        122
+        132
       ],
       "1": [
         1,
@@ -14444,18 +14444,18 @@
       ],
       "2": [
         6,
-        234
+        256
       ],
       "3": [
-        234,
+        256,
         6
       ],
       "4": [
         3,
-        137
+        147
       ],
       "5": [
-        137,
+        147,
         3
       ],
       "6": [
@@ -14492,10 +14492,10 @@
       ],
       "14": [
         3,
-        142
+        152
       ],
       "15": [
-        142,
+        152,
         3
       ]
     },
@@ -15906,131 +15906,131 @@
       }
     },
     "s": {
-      "0": 95,
-      "1": 13,
-      "2": 13,
-      "3": 13,
-      "4": 13,
-      "5": 13,
-      "6": 13,
+      "0": 102,
+      "1": 12,
+      "2": 12,
+      "3": 12,
+      "4": 12,
+      "5": 12,
+      "6": 12,
       "7": 9,
-      "8": 132,
-      "9": 424,
-      "10": 132,
-      "11": 132,
-      "12": 132,
-      "13": 132,
-      "14": 132,
-      "15": 132,
-      "16": 424,
-      "17": 292,
-      "18": 292,
+      "8": 22,
+      "9": 66,
+      "10": 22,
+      "11": 22,
+      "12": 22,
+      "13": 22,
+      "14": 22,
+      "15": 22,
+      "16": 66,
+      "17": 44,
+      "18": 44,
       "19": 9,
-      "20": 132,
-      "21": 424,
-      "22": 132,
-      "23": 132,
-      "24": 132,
-      "25": 132,
-      "26": 132,
-      "27": 132,
-      "28": 132,
-      "29": 132,
-      "30": 132,
-      "31": 132,
-      "32": 132,
-      "33": 132,
-      "34": 132,
-      "35": 132,
-      "36": 132,
-      "37": 132,
-      "38": 132,
-      "39": 132,
-      "40": 132,
-      "41": 132,
-      "42": 132,
-      "43": 424,
-      "44": 292,
-      "45": 292,
-      "46": 292,
-      "47": 292,
-      "48": 292,
-      "49": 292,
-      "50": 292,
-      "51": 292,
-      "52": 292,
-      "53": 292,
-      "54": 292,
-      "55": 292,
+      "20": 22,
+      "21": 66,
+      "22": 22,
+      "23": 22,
+      "24": 22,
+      "25": 22,
+      "26": 22,
+      "27": 22,
+      "28": 22,
+      "29": 22,
+      "30": 22,
+      "31": 22,
+      "32": 22,
+      "33": 22,
+      "34": 22,
+      "35": 22,
+      "36": 22,
+      "37": 22,
+      "38": 22,
+      "39": 22,
+      "40": 22,
+      "41": 22,
+      "42": 22,
+      "43": 66,
+      "44": 44,
+      "45": 44,
+      "46": 44,
+      "47": 44,
+      "48": 44,
+      "49": 44,
+      "50": 44,
+      "51": 44,
+      "52": 44,
+      "53": 44,
+      "54": 44,
+      "55": 44,
       "56": 9,
-      "57": 13,
-      "58": 13,
-      "59": 13,
-      "60": 374,
+      "57": 12,
+      "58": 12,
+      "59": 12,
+      "60": 134,
       "61": 9,
-      "62": 13,
+      "62": 12,
       "63": 9,
-      "64": 95,
-      "65": 13,
-      "66": 13,
-      "67": 13,
-      "68": 13,
-      "69": 13,
-      "70": 13,
-      "71": 13,
-      "72": 13,
-      "73": 13,
-      "74": 95,
-      "75": 82,
-      "76": 82,
-      "77": 82,
-      "78": 82,
+      "64": 102,
+      "65": 12,
+      "66": 12,
+      "67": 12,
+      "68": 12,
+      "69": 12,
+      "70": 12,
+      "71": 12,
+      "72": 12,
+      "73": 12,
+      "74": 102,
+      "75": 90,
+      "76": 90,
+      "77": 90,
+      "78": 90,
       "79": 9
     },
     "f": {
-      "0": 95,
-      "1": 132,
-      "2": 424,
-      "3": 132,
-      "4": 424,
+      "0": 102,
+      "1": 22,
+      "2": 66,
+      "3": 22,
+      "4": 66,
       "5": 9,
-      "6": 13,
-      "7": 374,
-      "8": 13,
-      "9": 95
+      "6": 12,
+      "7": 134,
+      "8": 12,
+      "9": 102
     },
     "b": {
       "0": [
-        13,
-        82
+        12,
+        90
       ],
       "1": [
-        132,
-        292
+        22,
+        44
       ],
       "2": [
-        292,
-        132
+        44,
+        22
       ],
       "3": [
-        132,
-        292
+        22,
+        44
       ],
       "4": [
-        292,
-        132
+        44,
+        22
       ],
       "5": [
-        13,
-        13
+        12,
+        12
       ],
       "6": [
-        13,
-        82
+        12,
+        90
       ],
       "7": [
-        82,
-        13
+        90,
+        12
       ]
     },
     "inputSourceMap": {

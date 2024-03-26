@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Sed augue",
+    "date": "2024-03-22T00:00:00.000+00:00",
+    "teacher_id": 1,
+    "description": "Cras ultricies mi eu turpis hendrerit fringilla. Praesent congue erat at massa. Quisque id odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras non dolor.",
+    "users": [],
+    "createdAt": "2024-03-22T12:06:38",
+    "updatedAt": "2024-03-22T12:06:38"
+  },
+  {
+    "id": 2,
+    "name": "Donec mi odio faucibus",
+    "date": "2024-03-31T00:00:00.000+00:00",
+    "teacher_id": 2,
+    "description": "Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede. Curabitur blandit mollis lacus. Vestibulum dapibus nunc ac augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Nunc sed turpis.",
+    "users": [],
+    "createdAt": "2024-03-22T12:07:12",
+    "updatedAt": "2024-03-22T12:07:12"
+  }
+]
