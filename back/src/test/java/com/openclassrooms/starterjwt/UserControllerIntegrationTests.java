@@ -3,6 +3,8 @@ package com.openclassrooms.starterjwt;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 import com.openclassrooms.starterjwt.dto.SessionDto;
+import com.openclassrooms.starterjwt.dto.TeacherDto;
+import com.openclassrooms.starterjwt.dto.UserDto;
 import com.openclassrooms.starterjwt.models.Session;
 import com.openclassrooms.starterjwt.payload.request.LoginRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +23,9 @@ import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("Check CRUD operation on Sessions")
+@DisplayName("Check API operations on Users")
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@Slf4j
 public class UserControllerIntegrationTests {
 
     @Autowired
@@ -48,105 +49,49 @@ public class UserControllerIntegrationTests {
     }
 
     @Test
-    void shouldReturn_ASession_If_Exists(){
+    void shouldReturn_AUser_If_Exists(){
 
-        Session expectedSession = new Session();
-        expectedSession.setId(1L);
-        expectedSession.setName("Session 1");
-        expectedSession.setDescription("First Yoga Session");
+        UserDto expectedUser = new UserDto();
+        expectedUser.setId(1L);
+        expectedUser.setEmail("yoga@studio.com");
+        expectedUser.setFirstName("Admin");
+        expectedUser.setLastName("Admin");
+        expectedUser.setAdmin(true);
 
         HttpEntity<String> httpEntity = new HttpEntity<>("", headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session/1", HttpMethod.GET, httpEntity, String.class);
+        ResponseEntity<String> response = testRestTemplate.exchange("/api/user/1", HttpMethod.GET, httpEntity, String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotBlank();
 
         DocumentContext context = JsonPath.parse(response.getBody());
         Number id = context.read("$.id");
-        String sessionName = context.read("$.name");
-        String sessionDescription = context.read("$.description");
+        String firstName = context.read("$.firstName");
+        String lastName = context.read("$.lastName");
+        String email = context.read("$.email");
+        boolean admin = context.read("$.admin");
 
-        assertThat(id.longValue()).isEqualTo(expectedSession.getId());
-        assertThat(sessionName).isEqualTo(expectedSession.getName());
-        assertThat(sessionDescription).isEqualTo(expectedSession.getDescription());
+        assertThat(id.longValue()).isEqualTo(expectedUser.getId());
+        assertThat(firstName).isEqualTo(expectedUser.getFirstName());
+        assertThat(lastName).isEqualTo(expectedUser.getLastName());
+        assertThat(email).isEqualTo(expectedUser.getEmail());
+        assertThat(admin).isEqualTo(expectedUser.isAdmin());
     }
 
     @Test
-    void shouldNotReturn_ASession_If_NotExists(){
-
-        Session expectedSession = new Session();
-        expectedSession.setId(1L);
-        expectedSession.setName("Session 1");
-        expectedSession.setDescription("First Yoga Session");
+    void shouldNotReturn_AUser_If_NotExists(){
 
         HttpEntity<String> httpEntity = new HttpEntity<>("", headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session/99", HttpMethod.GET, httpEntity, String.class);
+        ResponseEntity<String> response = testRestTemplate.exchange("/api/user/99", HttpMethod.GET, httpEntity, String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(response.getBody()).isBlank();
     }
 
     @Test
-    void shouldReturn_AnError_If_SessionIdIsNotANumber_InGET(){
+    void should_ReturnAnError_If_USerIdIsNotANumber_InGET(){
 
         HttpEntity<String> httpEntity = new HttpEntity<>("", headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session/notANumber", HttpMethod.GET, httpEntity, String.class);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
-        assertThat(response.getBody()).isBlank();
-    }
-
-    @Test
-    void shouldReturn_AllSessions(){
-
-        HttpEntity<String> httpEntity = new HttpEntity<>("", headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session", HttpMethod.GET, httpEntity, String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotBlank();
-
-        DocumentContext context = JsonPath.parse(response.getBody());
-        Number count = context.read("$.length()");
-        assertThat(count).isEqualTo(2);
-        JSONArray sessionNames = context.read("$..name");
-        assertThat(sessionNames).containsExactlyInAnyOrder("Session 1", "Session 2");
-    }
-
-    @Test
-    @DirtiesContext
-    void should_Create_NewSession(){
-        SessionDto newSession = new SessionDto();
-        newSession.setName("Session 3");
-        newSession.setDescription("Description Session 3");
-        newSession.setDate(new Date());
-        newSession.setTeacher_id(1L);
-
-        HttpEntity<SessionDto> httpEntity = new HttpEntity<SessionDto>(newSession, headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session", HttpMethod.POST, httpEntity, String.class);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-
-        DocumentContext context = JsonPath.parse(response.getBody());
-        Number id = context.read("$.id");
-        String sessionName = context.read("$.name");
-        String sessionDescription = context.read("$.description");
-
-        assertThat(id.longValue()).isEqualTo(3L);
-        assertThat(sessionName).isEqualTo("Session 3");
-        assertThat(sessionDescription).isEqualTo("Description Session 3");
-    }
-
-
-
-    @Test
-    @DirtiesContext
-    void shouldNot_CreateNewSession_With_EmptyName(){
-        SessionDto newSession = new SessionDto();
-        newSession.setName("");
-        newSession.setDescription("Description Session 3");
-        newSession.setDate(new Date());
-        newSession.setTeacher_id(1L);
-
-        HttpEntity<SessionDto> httpEntity = new HttpEntity<SessionDto>(newSession, headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session", HttpMethod.POST, httpEntity, String.class);
+        ResponseEntity<String> response = testRestTemplate.exchange("/api/user/notANumber", HttpMethod.GET, httpEntity, String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody()).isBlank();
@@ -154,58 +99,29 @@ public class UserControllerIntegrationTests {
 
     @Test
     @DirtiesContext
-    void should_UpdateSession(){
-        SessionDto updatedSession = new SessionDto();
-        updatedSession.setName("New Session 1");
-        updatedSession.setDescription("New Description Session 1");
-        updatedSession.setDate(new Date());
-        updatedSession.setTeacher_id(2L);
+    void should_DeleteUser_If_Himself(){
 
-        HttpEntity<SessionDto> httpEntity = new HttpEntity<SessionDto>(updatedSession, headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session/1", HttpMethod.PUT, httpEntity, String.class);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotBlank();
-
+        // Login as User 2
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setEmail("user@studio.com");
+        loginRequest.setPassword("test!1234");
+        HttpEntity<LoginRequest> httpLoginEntity = new HttpEntity<LoginRequest>(loginRequest);
+        ResponseEntity<String> response = testRestTemplate.postForEntity("/api/auth/login", httpLoginEntity, String.class);
         DocumentContext context = JsonPath.parse(response.getBody());
-        Number id = context.read("$.id");
-        String sessionName = context.read("$.name");
-        String sessionDescription = context.read("$.description");
-        Number teacherId = context.read("$.teacher_id");
-
-        assertThat(id.longValue()).isEqualTo(1L);
-        assertThat(sessionName).isEqualTo(updatedSession.getName());
-        assertThat(sessionDescription).isEqualTo(updatedSession.getDescription());
-        assertThat(teacherId.longValue()).isEqualTo(updatedSession.getTeacher_id());
-    }
-
-    @Test
-    void shouldReturn_AnError_If_SessionIdIsNotANumber_InPUT(){
-
-        SessionDto updatedSession = new SessionDto();
-        updatedSession.setName("New Session 1");
-        updatedSession.setDescription("New Description Session 1");
-        updatedSession.setDate(new Date());
-        updatedSession.setTeacher_id(2L);
-
-        HttpEntity<SessionDto> httpEntity = new HttpEntity<SessionDto>(updatedSession, headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session/NotANumber", HttpMethod.PUT, httpEntity, String.class);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
-        assertThat(response.getBody()).isBlank();
-    }
-
-    @Test
-    @DirtiesContext
-    void should_DeleteSession(){
-
-        HttpEntity<String> httpEntity = new HttpEntity<>("", headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session/1", HttpMethod.DELETE, httpEntity, String.class);
+        String userToken = context.read("$.token", String.class);
+        assertThat(userToken).isNotBlank();
+        HttpHeaders userHeaders = new HttpHeaders();
+        userHeaders.setBearerAuth(userToken);
+        // Delete "My Account" as User 2
+        HttpEntity<String> httpEntity = new HttpEntity<>("", userHeaders);
+        response = testRestTemplate.exchange("/api/user/2", HttpMethod.DELETE, httpEntity, String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isBlank();
 
-        response = testRestTemplate.exchange("/api/session/1", HttpMethod.GET, httpEntity, String.class);
+        // Request as User Admin & check user 2 doen't exist
+        httpEntity = new HttpEntity<>("", headers);
+        response = testRestTemplate.exchange("/api/user/2", HttpMethod.GET, httpEntity, String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(response.getBody()).isBlank();
 
@@ -213,79 +129,33 @@ public class UserControllerIntegrationTests {
 
     @Test
     @DirtiesContext
-    void shouldNot_Delete_ANonExisting_Session(){
+    void shouldNot_DeleteUser_IfNot_Exists(){
 
         HttpEntity<String> httpEntity = new HttpEntity<>("", headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session/99", HttpMethod.DELETE, httpEntity, String.class);
+        ResponseEntity<String> response = testRestTemplate.exchange("/api/user/99", HttpMethod.DELETE, httpEntity, String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(response.getBody()).isBlank();
     }
 
     @Test
-    void shouldReturn_AnError_If_SessionIdIsNotANumber_InDELETE(){
+    @DirtiesContext
+    void shouldNot_DeleteUser_IfNot_Himself(){
 
         HttpEntity<String> httpEntity = new HttpEntity<>("", headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session/NotANumber", HttpMethod.DELETE, httpEntity, String.class);
+        ResponseEntity<String> response = testRestTemplate.exchange("/api/user/2", HttpMethod.DELETE, httpEntity, String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
+        assertThat(response.getBody()).isBlank();
+    }
+
+    @Test
+    void shouldReturn_AnError_If_UserId_IsNotANumber_InDELETE(){
+
+        HttpEntity<String> httpEntity = new HttpEntity<>("", headers);
+        ResponseEntity<String> response = testRestTemplate.exchange("/api/user/NotANumber", HttpMethod.DELETE, httpEntity, String.class);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody()).isBlank();
     }
-
-    @Test
-    @DirtiesContext
-    void should_Participate_ToASession(){
-
-        // Subscribe User 2 To Session 1
-        HttpEntity<String> httpEntity = new HttpEntity<>("", headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session/1/participate/2", HttpMethod.POST, httpEntity, String.class);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isBlank();
-
-        // Check User 2 has been subscribed to session 1
-        response = testRestTemplate.exchange("/api/session/1", HttpMethod.GET, httpEntity, String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotBlank();
-
-        DocumentContext context = JsonPath.parse(response.getBody());
-        Number id = context.read("$.id");
-        JSONArray users = context.read("$.users");
-
-        assertThat(id.longValue()).isEqualTo(1L);
-        assertThat(users).containsExactlyInAnyOrder(2);
-    }
-
-    @Test
-    @DirtiesContext
-    void should_UnParticipate_ToASession(){
-
-        // Check User 2 has been subscribed to session 2
-        HttpEntity<String> httpEntity = new HttpEntity<>("", headers);
-        ResponseEntity<String> response = testRestTemplate.exchange("/api/session/2", HttpMethod.GET, httpEntity, String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotBlank();
-
-        DocumentContext context = JsonPath.parse(response.getBody());
-        Number id = context.read("$.id");
-        JSONArray users = context.read("$.users");
-        assertThat(id.longValue()).isEqualTo(2L);
-        assertThat(users).containsExactlyInAnyOrder(2);
-
-        // UnSubscribe User 2 To Session 1
-         response = testRestTemplate.exchange("/api/session/2/participate/2", HttpMethod.DELETE, httpEntity, String.class);
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isBlank();
-
-        // Check User 2 has been unsubscribed to session 2
-        response = testRestTemplate.exchange("/api/session/2", HttpMethod.GET, httpEntity, String.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).isNotBlank();
-
-        context = JsonPath.parse(response.getBody());
-        users = context.read("$.users");
-        assertThat(users).doesNotContain(2);
-    }
-
 }

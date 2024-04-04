@@ -17,15 +17,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Check Login / Logout / Register Features")
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class LoginControllerIntegrationTest {
+public class AuthControllerIntegrationTest {
 
-    @Autowired
-    private TestRestTemplate restTemplate;
     @Autowired
     private TestRestTemplate testRestTemplate;
 
     @Test
-    void testLogin_Succeeded(){
+    void should_Login_As_KnownUSer(){
         //Scenario: User want to log in the api
         // Given
         // I give my email account
@@ -36,7 +34,7 @@ public class LoginControllerIntegrationTest {
         loginRequest.setPassword("test!1234");
         HttpEntity<LoginRequest> httpEntity = new HttpEntity<LoginRequest>(loginRequest);
         // When I submit my credentials
-        ResponseEntity<String> response = restTemplate.postForEntity("/api/auth/login", httpEntity, String.class);
+        ResponseEntity<String> response = testRestTemplate.postForEntity("/api/auth/login", httpEntity, String.class);
         // Then
         // The Server Response should Be 200 - OK
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -59,7 +57,7 @@ public class LoginControllerIntegrationTest {
     }
 
     @Test
-    void testLogin_Fail_With_Empty_EmailOrPassword(){
+    void shouldNot_Login_If_EmptyEmailOrPassword(){
         //Scenario: User want to log in the api with an empty email or empty password
         // Given
         // I give an empty email
@@ -69,7 +67,7 @@ public class LoginControllerIntegrationTest {
         loginRequest.setPassword("test!1234");
         HttpEntity<LoginRequest> httpEntity = new HttpEntity<LoginRequest>(loginRequest);
         // When I try to log in
-        ResponseEntity<Void> response = restTemplate.postForEntity("/api/auth/login", httpEntity, Void.class);
+        ResponseEntity<Void> response = testRestTemplate.postForEntity("/api/auth/login", httpEntity, Void.class);
         // Then
         // The Server Response should Be 400 - BAD REQUEST
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
@@ -82,19 +80,49 @@ public class LoginControllerIntegrationTest {
         loginRequest.setEmail("yoga@studio.com");
         loginRequest.setPassword("");
         // When I try to log in
-        response = restTemplate.postForEntity("/api/auth/login", httpEntity, Void.class);
+        response = testRestTemplate.postForEntity("/api/auth/login", httpEntity, Void.class);
         // Then I should receive same response from server
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody()).isNull();
     }
 
     @Test
-    void testJWTAuthenticationOK(){
+    void shouldReturn_Unauthorized_If_LoginWith_WrongEmailOrPassword(){
+        //Scenario: User want to log in the api with an empty email or empty password
+        // Given
+        // I give an wrong email
+        // And I give a valid password
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setEmail("wrong-email@studio.com");
+        loginRequest.setPassword("test!1234");
+        HttpEntity<LoginRequest> httpEntity = new HttpEntity<LoginRequest>(loginRequest);
+        // When I try to log in
+        ResponseEntity<Void> response = testRestTemplate.postForEntity("/api/auth/login", httpEntity, Void.class);
+        // Then
+        // The Server Response should Be 401 - UNAUTHORIZED
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
+        // And the response Body is Null;
+        assertThat(response.getBody()).isNull();
+        // Or
+        // Given
+        // I give my email
+        // And I give an Empty password
+        loginRequest.setEmail("yoga@studio.com");
+        loginRequest.setPassword("wrongPassword");
+        // When I try to log in
+        response = testRestTemplate.postForEntity("/api/auth/login", httpEntity, Void.class);
+        // Then I should receive same response from server
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
+        assertThat(response.getBody()).isNull();
+    }
+
+    @Test
+    void should_Login_WithValidJWTToken(){
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail("yoga@studio.com");
         loginRequest.setPassword("test!1234");
         HttpEntity<LoginRequest> httpEntity = new HttpEntity<LoginRequest>(loginRequest);
-        ResponseEntity<String> response = restTemplate.postForEntity("/api/auth/login", httpEntity, String.class);
+        ResponseEntity<String> response = testRestTemplate.postForEntity("/api/auth/login", httpEntity, String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         DocumentContext context = JsonPath.parse(response.getBody());
         String token = context.read("$.token", String.class);
@@ -102,14 +130,14 @@ public class LoginControllerIntegrationTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);
         HttpEntity<String> sessionHttpEntity = new HttpEntity<>("",headers);
-        response = restTemplate.exchange("/api/session", HttpMethod.GET, sessionHttpEntity, String.class);
+        response = testRestTemplate.exchange("/api/session", HttpMethod.GET, sessionHttpEntity, String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).isNotNull();
     }
 
     @Test
-    void testUnauthorizedAccess_ShouldReturn_ErrorMessage(){
-        ResponseEntity<String> response = restTemplate.getForEntity("/api/session", String.class);
+    void should_ReturnAnErrorMessage_If_UnauthorizedUser(){
+        ResponseEntity<String> response = testRestTemplate.getForEntity("/api/session", String.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.UNAUTHORIZED);
         assertThat(response.getBody()).isNotNull();
         DocumentContext context = JsonPath.parse(response.getBody());
@@ -125,7 +153,7 @@ public class LoginControllerIntegrationTest {
 
     @Test
     @DirtiesContext
-    void testRegisterAsNewUser_Succeeded(){
+    void should_RegisterAsNewUser(){
         // Given User want to register
         SignupRequest request = new SignupRequest();
         request.setEmail("test-user@test.local");
@@ -143,5 +171,26 @@ public class LoginControllerIntegrationTest {
         assertThat(message).isNotBlank();
         assertThat(message).isEqualTo("User registered successfully!");
     }
+
+    @Test
+    @DirtiesContext
+    void should_ReturnAnError_IfRegisterAsNewUser_WithExistingEmail(){
+        // Given User want to register
+        SignupRequest request = new SignupRequest();
+        request.setEmail("user@studio.com");
+        request.setFirstName("Test");
+        request.setLastName("User");
+        request.setPassword("test!1234");
+        // When I submit my account informations to register
+        HttpEntity<SignupRequest> entity = new HttpEntity<>(request);
+        ResponseEntity<String> response =  testRestTemplate.postForEntity("/api/auth/register", entity, String.class);
+        // Then
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        assertThat(response.getBody()).isNotBlank();
+        DocumentContext context = JsonPath.parse(response.getBody());
+        String message = context.read("$.message");
+        assertThat(message).isEqualTo("Error: Email is already taken!");
+    }
+
 
 }
