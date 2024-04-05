@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 
 @DisplayName("TeacherService Unit Tests")
 @ExtendWith(MockitoExtension.class)
-public class TeacherServiceTest {
+public class TeacherServiceTests {
 
     @Mock
     TeacherRepository teacherRepository;
