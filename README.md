@@ -79,17 +79,17 @@ First we connect to MySQL Server as **root**;
 mysql -p
 Enter password : 
 ```
-- Then create an empty database
+- Then create an empty database (choose your own)
 ```SQL
-CREATE DATABASE IF NOT EXISTS 'test';
+CREATE DATABASE IF NOT EXISTS '<dbname>';
 ```
-- Create a database user (choose you own)
+- Create a database user with password (choose you own)
 ```SQL
-CREATE USER 'dbuser'@'*' IDENTIFIED BY 'should_be_changed';
+CREATE USER '<dbuser>'@'*' IDENTIFIED BY '<should_be_changed>';
 ```
-- Grant all privileges to dbuser on database test
+- Grant all privileges to <dbuser> on database <dbname>
 ```SQL
-GRANT ALL PRIVILEGES ON test.* TO 'dbuser'@'%';
+GRANT ALL PRIVILEGES ON <dbname>.* TO '<dbuser>'@'%';
 ```
 - Exit MySQL
 ```SQL
@@ -100,20 +100,21 @@ You will find in the root of the repository a directory named `SQL` which contai
 For creating database schema and insert some datas, use the following command in a terminal:
 
 ```shell
-mysql -u dbuser -p < Schema.sql
+mysql -u dbuser -p 'dbname' < Schema.sql
 ```
 Your database is ready.
 
 ## Backend
 Backend application can be found in "back" subdirectory.
-### Modify your backend application.properties if needed
-Modify src/main/resources/application.properties to suite your database name and dbUsername & password
+### Modify your backend application.properties
+- Modify src/main/resources/application.properties to suite your database name and dbUsername & password
 ```
 spring.datasource.url=jdbc:mysql://localhost:3306/<dbname>?allowPublicKeyRetrieval=true
 spring.datasource.username=<dbuser>
 spring.datasource.password=<dbpassword>
 ...
 ```
+
 ### Create .jar package
 ```bash
 mvn clean install
@@ -132,10 +133,19 @@ java -jar yoga-app-0.0.1-SNAPSHOT.jar
 ```
 This will run springboot executable and the backend API server will be accessible to 'http://localhost:8080'
 
-**N.B.** Be sure to have MySQL server instance up and running before executing backend
+**N.B.** Be sure to have MySQL server instance up and running before launching application.
 
 ## Testing
+If you only want to run unit tests and integration tests, simply run:
 
+```bash
+mvn clean test
+```
+This will run all the tests and generate coverage report.
+
+The coverage report is available at: 'back/target/site/jacoco/index.html'
+
+![Couverture_Tests_Backend](https://github.com/Picrate/OpenClassrooms-Projet-5/assets/110771424/d4f9be4a-7d38-481e-ae0b-62477c607f8c)
 
 ## Frontend
 
