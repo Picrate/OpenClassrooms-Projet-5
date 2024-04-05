@@ -96,11 +96,11 @@ GRANT ALL PRIVILEGES ON <dbname>.* TO '<dbuser>'@'%';
 exit;
 ```
 #### Execute schema.sql
-You will find in the root of the repository a directory named `SQL` which contain the database schema creation script: `Schema.sql`.
+You will find in the root of the repository a directory named `ressources/sql` at the root of the project. It contains the database schema creation script: `Schema.sql`.
 For creating database schema and insert some datas, use the following command in a terminal:
 
 ```shell
-mysql -u dbuser -p 'dbname' < Schema.sql
+mysql -u <dbuser> -p <dbname> < Schema.sql
 ```
 Your database is ready.
 
@@ -148,7 +148,20 @@ The coverage report is available at: 'back/target/site/jacoco/index.html'
 ![Couverture_Tests_Backend](https://github.com/Picrate/OpenClassrooms-Projet-5/assets/110771424/d4f9be4a-7d38-481e-ae0b-62477c607f8c)
 
 ## Frontend
-
+The frontend project is located at 'front' directory.
+### Installation
+To build and run this project, NodeJS is required on you computer.
+- In a terminal located in the front directory:
+```bash
+npm install
+```
+It will download all required dependencies.
+### Running in developpement mode
+In a Terminal under the front directory:
+```bash
+ng run
+```
+It will launch frontend project in 
 ### To build production files
 Run:
 ```bash
