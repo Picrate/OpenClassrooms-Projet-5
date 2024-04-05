@@ -52,8 +52,8 @@ Yoga App is an open source project. Feel free to fork the source and contribute 
 
 # Authors
 
-Coder : [Joffrey Hernandez](https://github.com/JoffreyHernandez)
-Tester : Patrice
+- Coder : [Joffrey Hernandez](https://github.com/JoffreyHernandez)
+- Tester : Patrice
 
 # Licensing
 
