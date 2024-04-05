@@ -17,13 +17,13 @@ Yoga App is a Web Application for managing yoga sessions.
 ## Frontend
 - [NodeJS](https://nodejs.org/en)
 
-## Backend
+## Backend
 - [Java jdk](https://www.oracle.com/en/java/technologies/downloads/) >= v.8
 - [MySQL Database Server](https://www.mysql.com/en/)
 
-## Technologies
+# Technologies
 
-### Frontend
+## Frontend
 
 - NodeJS >= 10.13
 - Angular 14
@@ -31,7 +31,7 @@ Yoga App is a Web Application for managing yoga sessions.
 - Jest v.28.1.3
 - Cypress v.10.4.0
 
-### Backend
+## Backend
 
 - Java jdk >= v.8
 - Maven
@@ -65,16 +65,15 @@ To install locally, you must first clone the repository.
 ```shell
 git clone https://github.com/Picrate/OpenClassrooms-Projet-5.git
 ```
-
-### Install MySQL server
+## Install MySQL server
 
 If MySQL server is not installed in your computer follow these installation instructions:
 
-[Download & Install](https://dev.mysql.com/downloads/installer/)
-[MySQL Reference Manual](https://dev.mysql.com/doc/refman/8.0/en/)
+- [Download & Install](https://dev.mysql.com/downloads/installer/)
+- [MySQL Reference Manual](https://dev.mysql.com/doc/refman/8.0/en/)
 
-#### Create Database, MariaDB user & configure Grant Access for user
-First we connect to MySQL Server as root;
+### Create Database, MySQL user & configure Grant Access for user
+First we connect to MySQL Server as **root**;
 - From shell
 ```shell
 mysql -p
@@ -92,7 +91,7 @@ CREATE USER 'dbuser'@'*' IDENTIFIED BY 'should_be_changed';
 ```SQL
 GRANT ALL PRIVILEGES ON test.* TO 'dbuser'@'%';
 ```
-- Exit MariaDB
+- Exit MySQL
 ```SQL
 exit;
 ```
@@ -105,19 +104,42 @@ mysql -u dbuser -p < Schema.sql
 ```
 Your database is ready.
 
-### Install dependencies
-
+## Backend
+Backend application can be found in "back" subdirectory.
+### Modify your backend application.properties if needed
+Modify src/main/resources/application.properties to suite your database name and dbUsername & password
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/<dbname>?allowPublicKeyRetrieval=true
+spring.datasource.username=<dbuser>
+spring.datasource.password=<dbpassword>
+...
+```
+### Create .jar package
 ```bash
 mvn clean install
 ```
-This will install all necessary modules for running this application.
+This will clean the project, download and install required dependencies, run tests and compile project into .jar file.
 
+***If you don't want to include and execute tests in release***
+```bash
+mvn clean package -Dmaven.test.skip=true
+```
 ### Running application
+Compiled application can be found in target directory
+To run this application, copy the 'yoga-app-0.0.1-SNAPSHOT.jar' to a clean directory then run:
+```bash
+java -jar yoga-app-0.0.1-SNAPSHOT.jar
+```
+This will run springboot executable and the backend API server will be accessible to 'http://localhost:8080'
 
-This will start a development server on your local machine. Now, you can navigate to `http://localhost:4200/`.
-The application will automatically reload if you change any of the source files.
+**N.B.** Be sure to have MySQL server instance up and running before executing backend
 
-## To build production files
+## Testing
+
+
+## Frontend
+
+### To build production files
 Run:
 ```bash
 ng build
@@ -132,7 +154,7 @@ You can externalize application.properties file outside the jar.
 
 Launch jar with:
 ```shell
-java -jar chatop-version.jar
+java -jar yoga-version.jar
 ```
 ## Accessing to OpenApi documentation
 Simply go to http://localhost:3001/swagger-ui.html
