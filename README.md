@@ -109,6 +109,7 @@ Your database is ready.
 
 ## Backend
 Backend application can be found in "back" subdirectory.
+
 ### Modify your backend application.properties
 - Modify src/main/resources/application.properties to suite your database name and dbUsername & password
 ```
@@ -117,7 +118,6 @@ spring.datasource.username=<dbuser>
 spring.datasource.password=<dbpassword>
 ...
 ```
-
 ### Create .jar package
 ```bash
 mvn clean install
@@ -135,6 +135,8 @@ To run this application, copy the 'yoga-app-0.0.1-SNAPSHOT.jar' to a clean direc
 java -jar yoga-app-0.0.1-SNAPSHOT.jar
 ```
 This will run springboot executable and the backend API server will be accessible to 'http://localhost:8080'
+
+You can use Postman Collection stored in '<project-root>/resources/postman' to interact with backend.
 
 **N.B.** Be sure to have MySQL server instance up and running before launching application.
 
