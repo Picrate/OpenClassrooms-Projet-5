@@ -175,11 +175,11 @@ Unit Tests and Integration Tests are run under Jest Testing Framework
 
 To run all these tests just run command below in a terminal:
 ```
-npx jest
+npm test
 ```
 To view coverage rate:
 ```bash
-jest --coverage
+npx jest --coverage
 ```
 Tests Coverage is accessible trhough: front/coverage/jest/lcov-report/index.html
 
