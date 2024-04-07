@@ -161,7 +161,7 @@ In a Terminal under the front directory:
 ```bash
 ng run
 ```
-It will launch frontend project in 
+It will launch frontend project in http://localhost:4200
 ### To build production files
 Run:
 ```bash
@@ -169,19 +169,46 @@ ng build
 ```
 The build artifacts will be stored in the `build/libs` directory.
 
+### Running Tests
+#### Unit tests & Integration tests
+Unit Tests and Integration Tests are run under Jest Testing Framework
+
+To run all these tests just run command below in a terminal:
+```
+npx jest
+```
+To view coverage rate:
+```bash
+jest --coverage
+```
+Tests Coverage is accessible trhough: front/coverage/jest/lcov-report/index.html
+
+![Couverture_Tests_Unitaires_et_Integration_Front_Jest](https://github.com/Picrate/OpenClassrooms-Projet-5/assets/110771424/b71f02b7-333b-422f-b92c-36e37ba66643)
+
+#### End To End Tests (E2E)
+E2E Tests are run under Jest Testing Framework
+
+To run all these tests just run command below in a terminal from the front directory:
+```
+npm run e2e
+```
+To view coverage rate:
+```bash
+npm run e2e:coverage
+```
+Tests Coverage is accessible trhough: front/coverage/lcov-report/index.html
+
+![Couverture_Tests_E2E](https://github.com/Picrate/OpenClassrooms-Projet-5/assets/110771424/dcbb6c5f-ee90-40d3-8fb9-c096570abbab)
+
 ### externalize variables for production use
 You can externalize application.properties file outside the jar.
 - Copy application.properties in a directory `config` at the root directory containing the jar.
 - Replace variables names used for development with the production values.
-- Add JWT_SECRET_KEY property.
 
 Launch jar with:
 ```shell
 java -jar yoga-version.jar
 ```
-## Accessing to OpenApi documentation
-Simply go to http://localhost:3001/swagger-ui.html
-
 # 🤝 Contributors
 
 This project would not be possible without our amazing contributors and the community.
