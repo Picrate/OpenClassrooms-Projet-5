@@ -65,6 +65,9 @@ To install locally, you must first clone the repository.
 ```shell
 git clone https://github.com/Picrate/OpenClassrooms-Projet-5.git
 ```
+**N.B.** Default admin user is: 'yoga@studio.com' / 'test!1234
+**This should not be used for production**
+
 ## Install MySQL server
 
 If MySQL server is not installed in your computer follow these installation instructions:
@@ -96,11 +99,11 @@ GRANT ALL PRIVILEGES ON <dbname>.* TO '<dbuser>'@'%';
 exit;
 ```
 #### Execute schema.sql
-You will find in the root of the repository a directory named `ressources/sql` at the root of the project. It contains the database schema creation script: `Schema.sql`.
+You will find in the root of the repository a directory named `ressources/sql` at the root of the project. It contains the database schema creation script: `script.sql`.
 For creating database schema and insert some datas, use the following command in a terminal:
 
 ```shell
-mysql -u <dbuser> -p <dbname> < Schema.sql
+mysql -u <dbuser> -p <dbname> < script.sql
 ```
 Your database is ready.
 
